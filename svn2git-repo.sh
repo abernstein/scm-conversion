@@ -2,11 +2,16 @@
 ###################################################
 # A simple script to migrate from SVN to GIT
 #
-# Following the recommended workflow, I decided to script it. The last item was to add variables to allow it more configurability.
+# Following the recommended workflow, I decided to script it. 
+# The last item was to add variables to allow it more configurability.
 #
 # It's a complete work in progress, and issues will be fixed if noted.
 #
-# This pulls all the branches, tags and trunk from a current SVN repository and clones them. Creates an authors conversion file to use during the commit process. This pulls all the commit history and replaces the svn user with the matching one in the authors.txt file. Then it assembles them into remotes and pushes them to the origin at the end.
+# This pulls all the branches, tags and trunk from a current SVN repository 
+# and clones them. Creates an authors conversion file to use during the 
+# commit process. This pulls all the commit history and replaces the svn 
+# user with the matching one in the authors.txt file. Then it assembles 
+# them into remotes and pushes them to the origin at the end.
 #
 # @link http://git-scm.com/book/en/Git-and-Other-Systems-Migrating-to-Git
 
