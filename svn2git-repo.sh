@@ -30,7 +30,7 @@ GIT_REMOTE=git@my-git-server:myrepository.git
   else
     SVN_ROOT=`svn info "${SVN_REPO_URL}" | grep '^Repository.Root' | sed -e 's/^Repository.Root: //'`
     svn log -q $SVN_ROOT | \
-      awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2" = "$2" "}' | \
+      awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2" = "$2" <"$2"> "}' | \
       sort -u > $AUTHOR_FILE
   fi
 fi
