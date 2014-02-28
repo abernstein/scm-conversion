@@ -25,18 +25,19 @@ GIT_REMOTE=git@my-git-server:myrepository.git
 
 ###################################################
 # Create an authors file from the current svn repo
+if [ -n $SVN_REPO_DIR ]; then
 
-cd $SVN_REPO_DIR
+  cd $SVN_REPO_DIR
 
-svn log --xml | grep -P "^<author" | sort -u | \
-  perl -pe 's/<author>(.*?)<\/author>/$1 = /' > $AUTHOR_FILE
-
+  svn log --xml | grep -P "^<author" | sort -u | \
+    perl -pe 's/<author>(.*?)<\/author>/$1 = /' > $AUTHOR_FILE
+fi
 ####################################
 # Create empty repo on local machine
 
 cd $CLONE_DIR
 
-git svn clone --stdLayout --prefix=$PREFIX/ \
+git svn clone --prefix=$PREFIX/ \
   --authors-file=$AUTHOR_FILE $SVN_REPO_URL $GIT_REPO_NAME
 
 #############################
@@ -66,7 +67,8 @@ git for-each-ref refs/remotes/$PREFIX | \
 
 ################################
 # Push to the master repository
-
-git remote add origin $GIT_REMOTE
-git push origin --all
-git push origin --tags
+if [ -n $GIT_REMOTE ]; then
+  git remote add origin $GIT_REMOTE
+  git push origin --all
+  git push origin --tags
+fi
